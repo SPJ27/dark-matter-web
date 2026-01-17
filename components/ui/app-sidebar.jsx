@@ -1,8 +1,16 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import {
+  Calendar,
+  Home,
+  Inbox,
+  Search,
+  Settings,
+  User,
+} from "lucide-react"
 
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -11,49 +19,32 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-// Menu items.
-const items = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
+const projects = [
+  { title: "Physics Notes", url: "#", icon: Home },
+  { title: "Chemistry AI", url: "#", icon: Inbox },
+  { title: "Math Solver", url: "#", icon: Calendar },
 ]
 
 export function AppSidebar() {
   return (
-    <Sidebar>
+    <Sidebar className="flex flex-col">
+      {/* Top Brand */}
+      <div className="px-4 py-4 text-lg font-semibold border-b">
+        Dark Matter
+      </div>
+
+      {/* Middle Content */}
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Dark Matter</SidebarGroupLabel>
+          <SidebarGroupLabel>Projects</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
+              {projects.map((project) => (
+                <SidebarMenuItem key={project.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
+                    <a href={project.url}>
+                      <project.icon className="h-4 w-4" />
+                      <span>{project.title}</span>
                     </a>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -62,7 +53,18 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      
+
+      {/* Bottom User */}
+      <SidebarFooter className="border-t p-3">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton>
+              <User className="h-4 w-4" />
+              <span>Account</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   )
 }
